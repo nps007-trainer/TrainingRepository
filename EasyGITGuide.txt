@@ -1,0 +1,16 @@
+Download and Install GIT
+Add the following paths to Path ->   EnvironmentVariables 
+C:\Program Files\Git\bin\
+C:\Program Files\Git\cmd\
+=============== Steps below to modify Environment Variables ===========
+Modifying PATH on Windows 7:
+
+Right-click "Computer" on the Desktop or Start Menu.
+Select "Properties".
+On the very far left, click the "Advanced system settings" link.
+Click the "Environment Variables" button at the bottom.
+Double-click the "Path" entry under "System variables".
+At the end of "Variable value", insert a ; if there is not already one, and then C:\Program Files\Git\bin\;C:\Program Files\Git\cmd\. Do not put a space between ; and the entry.
+Close and re-open your console.
+
+
