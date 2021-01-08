@@ -34,9 +34,13 @@ git push -u origin master
 
 or 
 
-…or push an existing repository from the command line
+…or push an existing file to the same Repository from the command line
 
 
 git add <anyfile>
-git commit -m "first commit"
+git commit -m "Final commit"
+git branch -M master
+git push -u origin master
+
+
 
