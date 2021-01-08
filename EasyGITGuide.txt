@@ -2,7 +2,9 @@ Download and Install GIT
 Add the following paths to Path ->   EnvironmentVariables 
 C:\Program Files\Git\bin\
 C:\Program Files\Git\cmd\
-=============== Steps below to modify Environment Variables ===========
+
+
+Steps below to modify Environment Variables ===========
 Modifying PATH on Windows 7:
 
 Right-click "Computer" on the Desktop or Start Menu.
@@ -13,4 +15,28 @@ Double-click the "Path" entry under "System variables".
 At the end of "Variable value", insert a ; if there is not already one, and then C:\Program Files\Git\bin\;C:\Program Files\Git\cmd\. Do not put a space between ; and the entry.
 Close and re-open your console.
 
+Steps for using GIT and uploading projects or files to GIT repository
+
+1. Create a new repository on GitHub.  
+2. Open Command Prompt
+3. Change the current working directory to your local project.
+4. Initialize the working folder as a Git repository.
+	git init 
+5. Add the files in your local repository
+	…or create a new repository on the command line
+git init
+git add <anyfile>
+git commit -m "first commit"
+git branch -M master
+git remote add origin https://github.com/nandinishamdasani77/Freshproject.git
+git push -u origin master
+
+
+or 
+
+…or push an existing repository from the command line
+
+
+git add <anyfile>
+git commit -m "first commit"
 
