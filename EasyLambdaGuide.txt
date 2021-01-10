@@ -1,0 +1,186 @@
+Lamdba expression is an enhanced version of  a anonymous class 
+
+-- create an interface
+
+public interface Anonymous
+{ void show();
+void printNum(int x);
+}
+  --- Way of implementing in traditional way
+
+dirct implemenation in main()
+
+Anonymous obj=new Anonymous{}
+{
+public void show()
+{
+//body
+}
+
+public void printNum(int x){ s.op(x);
+};   === completing anonymous class
+
+
+obj.show();
+obj.printNum(22);
+Implementing methods of Interface using another class or using Anonymous class
+================= Requirement of Lambda 
+
+An anonymous class is an inner class without a name
+A nested class that doesn't have any name is known as anonymous clas.s
+
+Wby Lambda Expression
+1. To make your code clear and concise.
+2. To make more readable (Not Messy)
+
+
+instead of  Anonymous obj=new Anonymous() { public void show () {// body }}; 
+
+remove the entire part only use
+() ->  {// imple};		// terminate with it ; as we terminated anonymous class 
+->   is called lambda expression
+
+we are going to make use of Functional Interface :- is an interface that contains only one method inside the Interface
+
+
+Anoymous lambda= () -> { s.o.p("hi");};
+lambda.show();
+
+if multi statements -- enclose it in {} 
+
+in above case as we have only single statement it can be written as 
+
+
+Anoymous lambda = () -> System.out.print("Hi inline method");
+lambda.show();
+
+
+================================Runnable as an anonymous class
+
+ public class RunnableIC {
+
+ public static void main(String[] args) {
+   // Runnable using anonymous class
+   new Thread(new Runnable() {
+        @Override
+        public void run() {
+            System.out.println("Runnable as anonymous class");
+        }
+    }).start();      
+ }
+}
+
+===========================Runnable as a lambda expression in Java
+
+public class RunnableLambda {
+    public static void main(String[] args) {
+        // Runnable using lambda
+        new Thread(()->System.out.println("Runnable as Lambda expression")).start();
+    }
+}
+ 
+=========================== More Clear
+public class RunnableLambda {
+    public static void main(String[] args) {
+        Runnable r = ()->{System.out.println("Runnable as Lambda expression");};
+        // Passing runnable instance
+        new Thread(r).start();
+    }
+}
+============================= Java Lambda Expression Comparator Example
+
+Since Comparator is a functional interface, Java 8 onward Comparator can also be implemented as a lambda expression in Java.
+
+In the example code there is a Person class with firstName, lastName and age fields. There is a list of Person objects which will be sorted on the basis of first name using a Comparator. That Comparator is implemented as a Java lambda expression.
+
+
+== Create Person class
+
+package lamdbaexample;
+
+
+public class Person {
+    private String firstName;
+    private String lastName;
+    private int age;
+
+    public Person(String firstName, String lastName, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" + "firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + '}';
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+====  Create PersonList
+
+package lamdbaexample;
+import java.util.*;
+public class PersonList {
+    
+    //utility method to create a list
+        public static List<Person> getList()
+    {
+      List<Person> pList=new ArrayList<>();
+      pList.add(new Person("Nandini","Shamdasani",40));
+      pList.add(new Person("Padam","Shamdasani",40));
+      pList.add(new Person("Delisha","Shamdasani",16));
+        System.out.println("Person List as follows");
+        System.out.println(pList);
+        return pList;
+    }
+}
+
+===================  comparator implementation as anonymous class
+
+List<Person> pList=PersonList.getList();
+
+//comparator implementation as Anonymous class
+
+Collections.sort(pList,new Comparator<Person>()
+{
+    @Override
+    public int compare(Person o1, Person o2) {
+      return o1.getFirstName().compareTo(o2.getFirstName());
+    }
+    
+});
+//Displaying Sorted elements
+     Iterator it=pList.iterator();
+     while(it.hasNext())
+     {
+         System.out.println(it.next());
+     }
+
+=================== // Providing the comparator functional interface compare method as lambda exression
+
+Collections.sort(pList, (Person a, Person b)-> a.getFirstName().compareTo(b.getFirstName()));
+   
+   pList.forEach((per)->System.out.println(per.getFirstName()));
