@@ -1,0 +1,271 @@
+Lamdba expression is an enhanced version of  a anonymous class 
+
+-- create an interface
+
+public interface Anonymous
+{ void show();
+void printNum(int x);
+}
+  --- Way of implementing in traditional way
+
+dirct implemenation in main()
+
+Anonymous obj=new Anonymous{}
+{
+public void show()
+{
+//body
+}
+
+public void printNum(int x){ s.op(x);
+};   === completing anonymous class
+
+
+obj.show();
+obj.printNum(22);
+Implementing methods of Interface using another class or using Anonymous class
+================= Requirement of Lambda 
+
+An anonymous class is an inner class without a name
+A nested class that doesn't have any name is known as anonymous clas.s
+
+Wby Lambda Expression
+1. To make your code clear and concise.
+2. To make more readable (Not Messy)
+
+
+instead of  Anonymous obj=new Anonymous() { public void show () {// body }}; 
+
+remove the entire part only use
+() ->  {// imple};		// terminate with it ; as we terminated anonymous class 
+->   is called lambda expression
+
+we are going to make use of Functional Interface :- is an interface that contains only one method inside the Interface
+
+
+Anoymous lambda= () -> { s.o.p("hi");};
+lambda.show();
+
+if multi statements -- enclose it in {} 
+
+in above case as we have only single statement it can be written as 
+
+
+Anoymous lambda = () -> System.out.print("Hi inline method");
+lambda.show();
+
+
+================================Runnable as an anonymous class
+
+ public class RunnableIC {
+
+ public static void main(String[] args) {
+   // Runnable using anonymous class
+   new Thread(new Runnable() {
+        @Override
+        public void run() {
+            System.out.println("Runnable as anonymous class");
+        }
+    }).start();      
+ }
+}
+
+===========================Runnable as a lambda expression in Java
+
+public class RunnableLambda {
+    public static void main(String[] args) {
+        // Runnable using lambda
+        new Thread(()->System.out.println("Runnable as Lambda expression")).start();
+    }
+}
+ 
+=========================== More Clear
+public class RunnableLambda {
+    public static void main(String[] args) {
+        Runnable r = ()->{System.out.println("Runnable as Lambda expression");};
+        // Passing runnable instance
+        new Thread(r).start();
+    }
+}
+============================= Java Lambda Expression Comparator Example
+
+Since Comparator is a functional interface, Java 8 onward Comparator can also be implemented as a lambda expression in Java.
+
+In the example code there is a Person class with firstName, lastName and age fields. There is a list of Person objects which will be sorted on the basis of first name using a Comparator. That Comparator is implemented as a Java lambda expression.
+
+
+== Create Person class
+
+package lamdbaexample;
+
+
+public class Person {
+    private String firstName;
+    private String lastName;
+    private int age;
+
+    public Person(String firstName, String lastName, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" + "firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + '}';
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+====  Create PersonList
+
+package lamdbaexample;
+import java.util.*;
+public class PersonList {
+    
+    //utility method to create a list
+        public static List<Person> getList()
+    {
+      List<Person> pList=new ArrayList<>();
+      pList.add(new Person("Nandini","Shamdasani",40));
+      pList.add(new Person("Padam","Shamdasani",40));
+      pList.add(new Person("Delisha","Shamdasani",16));
+        System.out.println("Person List as follows");
+        System.out.println(pList);
+        return pList;
+    }
+}
+
+===================  comparator implementation as anonymous class
+
+List<Person> pList=PersonList.getList();
+
+//comparator implementation as Anonymous class
+
+Collections.sort(pList,new Comparator<Person>()
+{
+    @Override
+    public int compare(Person o1, Person o2) {
+      return o1.getFirstName().compareTo(o2.getFirstName());
+    }
+    
+});
+//Displaying Sorted elements
+     Iterator it=pList.iterator();
+     while(it.hasNext())
+     {
+         System.out.println(it.next());
+     }
+
+=================== // Providing the comparator functional interface compare method as lambda exression
+
+Collections.sort(pList, (Person a, Person b)-> a.getFirstName().compareTo(b.getFirstName()));
+   
+   pList.forEach((per)->System.out.println(per.getFirstName()));
+
+===============  Distinct Elements of Array Integer
+
+ // List of Integer - unique values
+   
+   List<Integer> arList=Arrays.asList(1,2,3,4,2,1,4,5);
+        System.out.println("the distinct elements are");
+        
+        arList.stream().distinct().forEach(System.out::println);
+   
+    }
+
+=========  Program: Checking if String contains only Alphabets.
+
+Algorithm:
+
+1. Check if the string is empty or not. If empty, return false
+2. Check if the string is null or not. If null, return false.
+3. If the string is neither empty nor null,
+then check using Lambda Expression Character::isLetter().
+Return true if matched
+
+public class StringDemo {
+  public static boolean isCharactersOnly(String s)
+  {
+   return (
+           (!s.isEmpty()) && (s !=null) && (s.chars().allMatch(Character::isLetter)));
+           
+  }
+
+public static void countLetters(List<String> str)
+  {
+      for(String s : str)
+      {
+         if(s.length()==4)
+         {
+             System.out.println(s);
+         }      }
+     
+     
+  }
+}
+
+========== call to check
+System.out.println(StringDemo.isCharactersOnly("Welcome"));
+       
+System.out.println(StringDemo.isCharactersOnly("Welcome2"));
+
+============== Call to display string containing 4 Letters only
+ List<String> strList=Arrays.asList("Nandini","Padam","Delisha","Nand","RAj","Bhavi","Palak","Kimaya");
+        StringDemo.countLetters(strList);
+
+
+==========  5 Elements from List using FunctionalInterfae======
+
+
+System.out.println("==== of Max 5 Elements using Lambda=====");
+        StringLengthLambda sLambda=()-> {
+            strList.stream().limit(5).forEach(System.out::println);
+                };
+        
+        sLambda.printData();
+
+   =================  List of names containing 4 to 6 characters     
+        System.out.println("====== String of Length greater than 6 characters using Lambda======");
+        
+        Stream<String> lenSix= strList.stream()
+                .filter(str->str.length()>=4 && str.length()<=6 );
+                
+        lenSix.forEach(System.out::println);
+
+====== Square of Distinct Integers==
+        
+        List<Integer> sqList=arList.stream()
+                .distinct()
+                .map(sq->sq*sq)
+                .collect(Collectors.toList());
+        System.out.println(sqList);
+
+============= Even numbers
+
+        
+        arList.stream()
+                .filter(n-> n %2 ==0)
+                .forEach(System.out::println);
