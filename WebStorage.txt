@@ -1,0 +1,62 @@
+Web Storage
+Using the web storage you can Store local data in the web browser which you can access any time.
+The data is stored in the form of key -value pair.
+The web storage limit is far larger than the cookies and the web storage information is never transferred to the server.
+
+local Storage is for origin its mean for per domain and protocol
+All pages in the one origin can Store and access all data in the web storage.
+
+The web storage provide two objects for storing data in the client Browser.
+window.localStorage
+window.sessionStorage
+
+Using localStorage you can store data with no expiration date. and the Sessionstorage store data for a specific session. it means if you close your browser tab then the data will have been lost.
+
+Understanding with is web storage api with Login page example (Javascript)
+<html>
+<head>
+</head>
+
+<body>
+<div>
+<form>
+<input type="text" class="txtuser" placeholder="username"/>
+<input type="text" class="txtpass" placeholder="Password"/>
+<button class="submit">Sign Up </button>
+<p id="para"> </p>
+</form>
+</div>
+<script src="login.js" ></script>
+</html>
+
+===================== login.js======================
+
+Validate user using LocalStorage
+=== to check whether browser supports localstorage
+
+let txtuser=document.querySelector(".txtuser");		
+let txtpass=document.querySelector(".txtpass");		//if class
+let submit=document.querySelector(".submit");
+
+if(window.localStorage)
+{
+console.log("Supported here");
+
+localStorage.setItem("user","Sam");
+localStorage.setItem("pass","pass@123");
+let user=localStorage.getItem("user");
+let pass=localStorage.getItem("pass");
+let message=document.getElementById("para");	//used by id
+submit.addEventListener("click",()=>{
+if(user==txtuser.value && pass==txtpass.value){
+message.innerHTML="Login successful";
+}
+else {
+message.innerHTML="Invalid password";
+}
+})
+}
+else
+{
+console.log("Not supported");
+}
