@@ -1,0 +1,62 @@
+Implementing Sorting :- Sorting is arranging data in an alphabetical order
+data :- Collections(Treemap, List, Array, data from a database)
+using Interface
+a. Comparable :- compareTo()  -- using single object
+b. Comparator :- compare()   -- using multiple objects
+
+package sortingdemo;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+class Student
+{
+    int rollno;
+    String name, address;
+    //initialize the class members using constructor
+    public Student(int r, String n, String a)
+    {
+        this.rollno=r;
+        this.name=n;
+        this.address=a;
+    
+    }
+    //to print student details in main()
+    public String toString()
+    {
+       return this.rollno + " " +this.name + " "+this.address; 
+    }
+        
+}
+
+class SortByName implements Comparator<Student>
+{
+
+    @Override
+    public int compare(Student o1, Student o2) {
+        return o1.name.compareTo(o2.name);
+    }
+    
+}
+public class SortingDemo {
+
+    public static void main(String[] args) {
+       ArrayList<Student> stdlist=new ArrayList<>();
+       stdlist.add(new Student(111,"aditi","dadar"));
+        stdlist.add(new Student(333,"stimit","dadar"));
+         stdlist.add(new Student(222,"nandini","ulhasnagar"));
+        
+        System.out.println("Unsorted");
+        for (int i=0;i<stdlist.size();i++)
+        {
+            System.out.println(stdlist.get(i));
+        }
+        
+        Collections.sort(stdlist, new SortByName());
+        System.out.println("Sorting by Name");
+         for (int i=0;i<stdlist.size();i++)
+        {
+            System.out.println(stdlist.get(i));
+        }
+    }
