@@ -1,0 +1,27 @@
+h1,h2{
+    text-transform: capitalize;
+}
+
+ol{
+    list-style-type: upper-roman;
+    list-style-position: inside;
+    
+}
+
+ol{
+    list-style: lower-latin inside;
+}
+
+ul{
+    list-style-image: url('download1.png');
+    list-style-position: inside;
+}
+
+tr.style1{
+    text-align: right;
+}
+
+tr.alt{
+    background-color: cadetblue;
+    color:crimson;
+}
