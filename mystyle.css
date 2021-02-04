@@ -1,0 +1,69 @@
+p
+{
+text-align :justify;
+font-size : 24;
+font-family : Times New Roman;
+}
+
+h3,h4
+{
+background-color:Black;
+color:Red;
+text-align:Center;
+}
+
+a:link {
+  color: red;
+}
+
+a:visited
+{
+color:purple;
+}
+
+a:hover
+{
+color:hotpink;
+}
+
+a:active
+{
+color:Green;
+}
+
+#Style1
+{
+text-decoration : line-through;
+font-style:italic;
+font-weight:bold;
+}
+
+
+#top {
+    background-color: blue;
+    }
+
+#top h1 {
+    color: hotpink;
+}
+
+#top p {
+    color: red;
+    font-weight: bold;
+}
+
+#top>p					--immediate parent
+{
+text-align:Right;
+font-size:36px;
+color:Red;
+font-style:italic;
+
+}
+
+#top~p					--following div
+{
+text-align:Center;
+font-size:42px;
+color:Red;
+}
