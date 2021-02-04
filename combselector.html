@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+       div *{
+            text-align: center;
+        }
+        div>p{
+            background-color: black;
+            color:darkorange;
+        }
+
+        div p{
+            text-transform: uppercase;
+        }
+
+        ul~h2{
+            background-color: khaki;
+        }
+
+        div+p{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <h1> This is first heading </h1>
+    
+    <div> This is first division of my page
+       
+<p> This is  first  division child of div </p>
+<p> this is second division child of div</p>
+
+<details>
+    <p> 
+        This is paragraph inside details of division tag
+    </p>
+</details>
+    </div>
+   
+    <p> this is immediate after div</p>
+    <p>
+        This is last paragraph outside div
+    </p>
+<h1> This is a sibling of div and p </h1>
+  
+<h2> before ul </h2>
+<ul><li>list1</li></ul>
+<h2> This is preceding ul</h2>
+<h3> this is heading 3</h3>
+<h2> second h2</h2>
+</body>
+</html>
