@@ -1,0 +1,17 @@
+-- Current date and time
+	select now();
+-- current Date
+	select curdate();
+-- current Time
+	select curtime();
+-- day of a month
+	select dayofmonth('2021-01-24'), month('2021-01-24')
+--date arithmetic date_add(date, interval expr unit), Date_sub(date, interval, expr unit)
+	select date_add('2021-01-24',interval 1 day), date_sub('2021-01-24',interval 1 year);
+
+-- difference between two dates datediff(expr1,expr2) returns expr1-expr2 expressed as a value in days from one date to another . Only the date parts of the values are used in the calculation.
+	select datediff(now(),'1977-11-26');
+
+-- date_format() returns a string with a character set.
+	select date_format(now(),'%W %M %Y);	Sunday January 2021
+	select date_format(now(),'%w %m %y);	0 01 21
