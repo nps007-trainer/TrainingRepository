@@ -1,0 +1,77 @@
+Step 1. Create the buildings table:
+
+CREATE TABLE buildings (
+    building_no INT PRIMARY KEY AUTO_INCREMENT,
+    building_name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL
+);
+Code language: SQL (Structured Query Language) (sql)
+Step 2. Create the rooms table:
+
+CREATE TABLE rooms (
+    room_no INT PRIMARY KEY AUTO_INCREMENT,
+    room_name VARCHAR(255) NOT NULL,
+    building_no INT NOT NULL,		|should not be not null
+    FOREIGN KEY (building_no)
+        REFERENCES buildings (building_no)
+        ON DELETE CASCADE    | Set Null
+);
+
+Step 3. Insert rows into the buildings table:
+INSERT INTO buildings(building_name,address)
+VALUES('ACME Headquaters','3950 North 1st Street CA 95134'),
+      ('ACME Sales','5000 North 1st Street CA 95134');
+
+Step 4. Query data from the buildings table:
+
+SELECT * FROM buildings;
+Code language: SQL (Structured Query Language) (sql)
+MySQL ON DELETE CASCADE buildings table
+We have two rows in the buildings table.
+
+Step 5. Insert rows into the rooms table:
+
+INSERT INTO rooms(room_name,building_no)
+VALUES('Amazon',1),
+      ('War Room',1),
+      ('Office of CEO',1),
+      ('Marketing',2),
+      ('Showroom',2);
+
+Step 6. Query data from the rooms table:
+
+SELECT * FROM rooms;
+Code language: SQL (Structured Query Language) (sql)
+MySQL ON DELETE CASCADE - rooms table
+
+Step 7. Delete the building with building no. 2:
+
+DELETE FROM buildings 
+WHERE building_no = 2;
+
+Step 8. Query data from rooms table:
+
+SELECT * FROM rooms;
+Code language: SQL (Structured Query Language) (sql)
+MySQL ON DELETE CASCADE - rooms table after delete
+
+
+========================================
+
+CREATE TABLE products
+( product_id INT PRIMARY KEY,
+  product_name VARCHAR(50) NOT NULL,
+  category VARCHAR(25)
+);
+
+CREATE TABLE inventory
+( inventory_id INT PRIMARY KEY,
+  product_id INT,
+  quantity INT,
+  min_level INT,
+  max_level INT,
+  CONSTRAINT fk_inv_product_id
+    FOREIGN KEY (product_id)
+    REFERENCES products (product_id)
+    ON DELETE SET NULL
+);
