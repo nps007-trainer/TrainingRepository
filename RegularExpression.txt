@@ -1,0 +1,134 @@
+
+Regular expressions (Regex) allow us to create complicated queries. Below is a list of commonly used regular expressions
+
+Example :- email or password validation
+
+package :- java.util.regex;
+
+classes :- Pattern , Matcher, PatternSyntaxException, MatchResult(interface)
+
+Pattern class :- compiles the string or the text based on the pattern defined.
+
+
+[abc] :- means a or b or c 
+
+[^abc]ang will match rang or sang or lang but not baang
+
+.(dot) represents a single character
+	Pattern.matches(".s","as")		//true
+	Pattern.matches(".s","mk")		//false
+	Pattern.matches("..s","mas")		//true (3rd character s)
+	Pattern.matches("[^amn]","net")		//false 
+	Pattern.matches("[amn]","a")		//true
+	Pattern.matches("[amn]","ammnaaann")	//false more than once
+
+Regex characters and quantifiers
+
+Patttern.matches("[amn]?","a")		// true a or m or n comes one time
+Patttern.matches("[amn]?","aaaa")	// false a more than once
+	
+Patttern.matches("[amn]+","a")		// true a once or more than once
+Patttern.matches("[amn]+","aaa")	// true a once or more than once
+Patttern.matches("[amn]+","aazzta")	// false  z and t are not matching pattern
+Patttern.matches("[amn]*","mama")	// true a or m or n comes zero or more than one time
+
+Metacharacters
+\d		:-  digit
+\D		:- not a digit (Character)
+\w		:- anything including digit or characters , but no special symbol
+\s		:- space
+
+Pattern.matches("\\d","ab")	//false   not digit
+Pattern.matches("\\d","1")	//true its digit
+Pattern.matches("\\d","2345")	//false its digit but more than once
+Pattern.matches("\\D","abc")	//false its character but more than once
+Pattern.matches("\\D*","bat")	//true non digit may be zero or more than once
+Pattern.matches("[a-zA-Z0-9]{9}","nandini11")	// true
+Pattern.matches("[a-zA-Z0-9]{9}","nandini$1")	//false
+Pattern.matches("[789]{1}[0-9]{9}",9890066007)  //true
+Pattern.matches("[789]{1}\\d{9}",8600586666)	//true
+
+|	any one of the pattern separated by |
+		bird|animal
+^	beginning of the string ^Hello
+$	end of the string 	World$
+
+
+public String checkName() {
+	if (Pattern.matches("[\\w]*\\s[\\w]*", this.name)) {
+	return "Valid Name";
+	}
+	else
+	{
+		return "Invalid Name";
+	}
+}
+
+public void countOccurences(String message) {
+	String myexp=".*rome.*";		
+	
+	Pattern pat=Pattern.compile(myexp);
+	Matcher m=pat.matcher(message);
+		System.out.println(m.matches());
+		while(m.find()) {
+			System.out.println(m.start() +" - " + m.end());
+		}
+}
+
+public void splitText(String text) {
+String myexp="\\d";
+Pattern pat=Pattern.compile(myexp);
+String[] newtext=pat.split(text);
+
+for(String str : newtext) {
+	System.out.println(str);
+}
+}
+===========================================
+Person p=new Person("Nandini Shamdasani");
+System.out.println(p.checkName());
+p.countOccurences("When in rome , do as romans, rome");
+p.splitText("CAPG6TY2REACTB7BATCH");
+System.out.println(z);
+
+
+==========================================================
+
+Valid hexadecimal color code
+Condition
+1.	Start with symbol #			--    ^
+2.	It should be followed by the letters a-f , A-F and / or digits from 0-9
+3.	Length of hexadecimal including # : -7 , excluding # -6 
+
+
+int ValidateHexaCode(String str){
+regex=”^#([A-Fa-f0-9]{6})$”;
+Pattern p=Pattern.compile(regex);
+Matcher m=p.matcher(str);
+if(m.matches()==true)
+return 1;
+else
+return 0;
+}
+
+======================================================================
+Containing  "SOMETEXT"  into String
+
+String text="I read Java Book but now ,started reading Heads First book from O'Reilly" ;
+     String pattern = ".*bOok.*";
+     String findText="read";
+     Pattern pat=Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
+     Matcher matcher=pat.matcher(text);
+     boolean match=matcher.matches();
+        System.out.println("Is this line containing book ?" +match);
+
+
+====
+
+// string contains http:// in a message
+		
+		String message="Working on regular expression text containing occurence of http:// pattern";
+		String regex = ".*http://.*";
+	boolean m=	Pattern.matches(regex, message);
+	System.out.println(m);
+       
